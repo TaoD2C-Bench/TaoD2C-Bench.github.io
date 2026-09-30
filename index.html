@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="TaoD2C-Bench benchmarks multimodal large language models for industrial UI code generation beyond visual fidelity.">
+  <title>TaoD2C-Bench</title>
+  <style>
+    :root { --ink:#172033; --muted:#647084; --line:#e5e9f0; --blue:#315be8; --soft:#f5f7fb; }
+    * { box-sizing: border-box; }
+    body { margin:0; color:var(--ink); background:#fff; font:16px/1.65 Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    a { color:inherit; }
+    .wrap { width:min(1080px, calc(100% - 40px)); margin:auto; }
+    header { padding:88px 0 54px; text-align:center; background:linear-gradient(180deg,#f4f7ff 0%,#fff 100%); }
+    h1 { margin:0; font-size:clamp(3rem,7vw,6.2rem); line-height:.98; letter-spacing:-.055em; }
+    .subtitle { max-width:900px; margin:24px auto 0; color:#354158; font-size:clamp(1.2rem,2.2vw,1.7rem); line-height:1.35; }
+    .authors { max-width:920px; margin:30px auto 0; font-size:1.05rem; }
+    .affiliations { margin:8px auto 0; color:var(--muted); font-size:.94rem; }
+    .actions { display:flex; justify-content:center; flex-wrap:wrap; gap:12px; margin-top:30px; }
+    .button { display:inline-flex; align-items:center; min-height:44px; padding:0 20px; border:1px solid var(--line); border-radius:999px; background:#fff; text-decoration:none; font-weight:650; }
+    .button.primary { color:#fff; background:var(--ink); border-color:var(--ink); }
+    .button.disabled { color:#8590a3; background:#f6f7fa; cursor:default; }
+    main { padding:32px 0 88px; }
+    .stats { display:grid; grid-template-columns:repeat(4,1fr); border:1px solid var(--line); border-radius:20px; overflow:hidden; box-shadow:0 14px 40px rgba(24,35,60,.06); }
+    .stat { padding:26px 18px; text-align:center; border-right:1px solid var(--line); }
+    .stat:last-child { border:0; }
+    .stat strong { display:block; font-size:2rem; line-height:1.1; }
+    .stat span { color:var(--muted); font-size:.92rem; }
+    section { margin-top:72px; }
+    h2 { margin:0 0 22px; font-size:2rem; letter-spacing:-.025em; }
+    .lead { color:#364158; font-size:1.08rem; }
+    .figure { padding:22px; border:1px solid var(--line); border-radius:20px; background:var(--soft); }
+    .figure img { display:block; width:100%; border-radius:10px; background:#fff; }
+    .grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+    .card { padding:24px; border:1px solid var(--line); border-radius:18px; background:#fff; }
+    .card .index { color:var(--blue); font-weight:750; font-size:.86rem; letter-spacing:.08em; }
+    .card h3 { margin:8px 0 10px; font-size:1.18rem; }
+    .card p { margin:0; color:var(--muted); }
+    .tags { display:flex; flex-wrap:wrap; gap:12px; }
+    .tag { padding:12px 18px; border-radius:999px; background:#eef2ff; color:#2849b6; font-weight:700; }
+    footer { padding:28px 0; border-top:1px solid var(--line); color:var(--muted); text-align:center; font-size:.9rem; }
+    @media (max-width:760px) { header{padding-top:62px}.stats,.grid{grid-template-columns:1fr}.stat{border-right:0;border-bottom:1px solid var(--line)}.stat:last-child{border-bottom:0}section{margin-top:54px} }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <h1>TaoD2C-Bench</h1>
+      <p class="subtitle">Benchmarking MLLMs for Industrial UI Code Generation Beyond Visual Fidelity</p>
+      <p class="authors">Chengwei Shi · Yunnong Chen · Tingting Zhou · Qiang Lu · Shiyu Yue · Xinyuan Hu · Jianfang Ru · Liuqing Chen</p>
+      <p class="affiliations">Zhejiang University · Alibaba Group · Taobao (China) Software Co., Ltd.</p>
+      <div class="actions">
+        <span class="button primary disabled">Paper · Coming soon</span>
+        <span class="button disabled">Dataset · Coming soon</span>
+        <a class="button" href="https://github.com/TaoD2C-Bench">GitHub</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="stats" aria-label="Dataset statistics">
+      <div class="stat"><strong>2,861</strong><span>Production designs</span></div>
+      <div class="stat"><strong>97,652</strong><span>Expert annotations</span></div>
+      <div class="stat"><strong>17</strong><span>Commercial platforms</span></div>
+      <div class="stat"><strong>4</strong><span>Requirement categories</span></div>
+    </div>
+
+    <section>
+      <h2>Abstract</h2>
+      <p class="lead">TaoD2C-Bench evaluates whether multimodal large language models can generate industrial UI code that satisfies implementation requirements—not merely reproduce visual appearance. TaoD2C pairs real production designs with layer-level expert annotations that distinguish required constraints from permitted implementation choices. The benchmark separates end-to-end generation into requirement inference and requirement realization, exposing capability gaps that visual similarity alone cannot reveal.</p>
+    </section>
+
+    <section>
+      <h2>Benchmark Overview</h2>
+      <div class="figure"><img src="assets/overview.png" alt="Overview of the TaoD2C-Bench tasks and evaluation framework"></div>
+    </section>
+
+    <section>
+      <h2>Three Evaluation Tasks</h2>
+      <div class="grid">
+        <article class="card"><div class="index">TASK 01</div><h3>End-to-End Generation</h3><p>Generate executable UI code from the design image and structured layer representation.</p></article>
+        <article class="card"><div class="index">TASK 02</div><h3>Requirement Inference</h3><p>Infer the implementation requirements encoded implicitly in visual and layer-level evidence.</p></article>
+        <article class="card"><div class="index">TASK 03</div><h3>Requirement Realization</h3><p>Produce code that correctly implements explicitly provided requirements under target-library constraints.</p></article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Expert Annotation Dimensions</h2>
+      <div class="tags" aria-label="Annotation dimensions">
+        <span class="tag">Component</span><span class="tag">Grouping</span><span class="tag">Position</span><span class="tag">Alignment</span>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="wrap">TaoD2C-Bench · Industrial Design-to-Code Benchmark</div></footer>
+</body>
+</html>
